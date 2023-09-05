@@ -1,11 +1,11 @@
 variable "api_cert" {
             type = string
-            default = "/Users/K.Shepherd/Github/f5xc_api_key/emea-ent/kshep-f5xc-cert.crt"
+            default = "/Users/K.Shepherd/Github/f5xc_api_key/channel/k-shep-channel-cert.crt"
         }
         
         variable "api_key" {
           type = string
-          default = "/Users/K.Shepherd/Github/f5xc_api_key/emea-ent/kshep-f5xc-key.key"
+          default = "/Users/K.Shepherd/Github/f5xc_api_key/channel/k-shep-channel-key.key"
         }
         
         variable "api_url" {
