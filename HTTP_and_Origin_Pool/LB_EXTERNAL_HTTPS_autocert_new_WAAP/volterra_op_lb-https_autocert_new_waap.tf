@@ -2,7 +2,7 @@
 //Definition of the Origin, 1-origin.tf
 //Start of the TF file
 resource "volterra_origin_pool" "op-ip-internal" {
-  name                   = "op-ip-internal"
+  name                   = "k-shep-tf-origin-pool-jshop"
   //Name of the namespace where the origin pool must be deployed
   namespace              = "k-shepherd-emea-namesapce"
  
@@ -26,7 +26,7 @@ resource "volterra_origin_pool" "op-ip-internal" {
 
 //Definition of the WAAP Policy
 resource "volterra_app_firewall" "waap-tf" {
-  name      = "waap-demo-policy-tf"
+  name      = "k-shep-tf-waap-demo-policy"
   namespace = "k-shepherd-emea-namesapce"
 
   // One of the arguments from this list "allow_all_response_codes allowed_response_codes" must be set
@@ -51,12 +51,12 @@ resource "volterra_app_firewall" "waap-tf" {
 resource "volterra_http_loadbalancer" "lb-https-tf" {
   depends_on = [volterra_origin_pool.op-ip-internal]
   //Mandatory "Metadata"
-  name      = "lb-https-tf"
+  name      = "k-shep-tf-lb-https-juiceshop"
   //Name of the namespace where the origin pool must be deployed
   namespace = "k-shepherd-emea-namesapce"
   //End of mandatory "Metadata" 
   //Mandatory "Basic configuration" with Auto-Cert 
-  domains = ["ksheptf.emea-ent.f5demos.com"]
+  domains = ["tf-juiceshop.xc.kermarsh.com"]
   https_auto_cert {
     add_hsts = true
     http_redirect = true
@@ -68,7 +68,7 @@ resource "volterra_http_loadbalancer" "lb-https-tf" {
   }
   default_route_pools {
       pool {
-        name = "op-ip-internal"
+        name = "k-shep-tf-origin-pool-jshop"
         namespace = "k-shepherd-emea-namesapce"
       }
       weight = 1
@@ -82,7 +82,7 @@ resource "volterra_http_loadbalancer" "lb-https-tf" {
   disable_rate_limit = true
   //WAAP Policy reference, created earlier in this plan - refer to the same name
   app_firewall {
-    name = "waap-demo-policy-tf"
+    name = "k-shep-tf-waap-demo-policy"
     namespace = "k-shepherd-emea-namesapce"
   }
   multi_lb_app = true
