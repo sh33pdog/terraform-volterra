@@ -10,5 +10,5 @@ variable "api_cert" {
         
         variable "api_url" {
             type = string
-            default = "https://f5-emea-ent.console.ves.volterra.io/api"
+            default = "https://f5-channel.console.ves.volterra.io/api"
         }
